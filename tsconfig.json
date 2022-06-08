@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "module": "CommonJS",
+    "target": "ES5",
+    "lib": ["ES5"],
+    "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": false,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "outDir": "lib",
+    "declaration": true
+  }
+}
