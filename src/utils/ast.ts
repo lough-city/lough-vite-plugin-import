@@ -1,7 +1,8 @@
 import generate from '@babel/generator'
 import { parse, ParseResult } from '@babel/parser'
 import { File } from '@babel/types'
-import { ILibImportComponentDict, IPluginConfig } from 'src/typings'
+import { transformNamedByNamedType } from '@lyrical/js'
+import { ILibConfig, ILibImportComponentDict } from 'src/typings'
 
 /**
  * 获取 babel 解析后的 AST
@@ -16,7 +17,7 @@ export const getAst = (code: string) => parse(code, { sourceType: 'module', plug
  * @param libList 库列表
  * @returns 引入库组件字典
  */
-export const parseImportLibComponent = (ast: ParseResult<File>, libList: IPluginConfig['libList']) => {
+export const parseImportLibComponent = (ast: ParseResult<File>, libList: Array<ILibConfig>) => {
   const libDict: ILibImportComponentDict = {}
 
   if (!Array.isArray(ast.program.body)) return libDict
@@ -28,11 +29,14 @@ export const parseImportLibComponent = (ast: ParseResult<File>, libList: IPlugin
     if (astNode.type !== 'ImportDeclaration' || !libNames.includes(libName)) continue
 
     for (const specifier of (astNode as any).specifiers) {
-      const importComponentName = specifier?.imported.name || ''
+      let importComponentName = specifier?.imported.name || ''
       const localComponentName = specifier?.local.name || ''
       if (!importComponentName) continue
 
       const index = libList.findIndex(lib => lib.name === libName)
+      const config = libList[index]
+
+      importComponentName = transformNamedByNamedType(importComponentName, config.namedType)
 
       if (libDict[libName]) libDict[libName].push({ ...libList[index], importComponentName, localComponentName })
       else libDict[libName] = [{ ...libList[index], importComponentName, localComponentName }]

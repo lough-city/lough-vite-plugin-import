@@ -1,7 +1,74 @@
+import { RequiredPick } from '@lyrical/types'
+import { NamedTypeFuncMapOrMap } from '@lyrical/js'
+
+/**
+ * 库处理组件配置
+ */
+export interface ILibComponentConfig {
+  /**
+   * 组件引入地址转换
+   * @param config 库组件配置
+   * @default ({name, directory, importComponentName}: IComponentConfig) => `${name}/${directory}/${importComponentName}`
+   */
+  transform: (config: Omit<IComponentConfig, 'component'>) => string
+}
+
+/**
+ * 库处理样式配置
+ */
+
+export interface ILibStyleConfig {
+  /**
+   * 样式引入地址转换
+   * @param config 库组件配置
+   * @default ({name, directory, importComponentName}: IComponentConfig) => `${name}/${directory}/${importComponentName}/style`
+   */
+  transform: (config: Omit<IComponentConfig, 'style'>) => string
+  /**
+   * 排除不存在文件
+   * @default true
+   */
+  excludeNotExistFile?: boolean
+}
+
+interface ILibConfigByCore<CORE extends boolean = true> {
+  /**
+   * 库名称
+   */
+  name: string
+  /**
+   * 库目录
+   * @default 'es'
+   */
+  directory?: string
+  /**
+   * 命名类型
+   * @default 'BigHumpNamed'
+   */
+  namedType?: NamedTypeFuncMapOrMap
+  /**
+   * 组件配置
+   */
+  component?: (CORE extends true ? false : boolean) | ILibComponentConfig
+  /**
+   * 样式配置
+   */
+  style?:
+    | (CORE extends true ? false : boolean)
+    | (CORE extends true ? RequiredPick<ILibStyleConfig, 'excludeNotExistFile'> : ILibStyleConfig)
+}
+
+/**
+ * 库处理配置
+ */
+export type ILibConfig<CORE extends boolean = true> = CORE extends true
+  ? RequiredPick<ILibConfigByCore<CORE>, keyof ILibConfigByCore<CORE>>
+  : ILibConfigByCore<CORE>
+
 /**
  * 引入组件配置
  */
-interface IComponentConfig extends ILibConfig {
+export interface IComponentConfig extends ILibConfig {
   /**
    * 引入组件名称
    */
@@ -20,61 +87,15 @@ export interface ILibImportComponentDict {
 }
 
 /**
- * 库处理配置
- */
-export interface ILibConfig {
-  /**
-   * 库名称
-   */
-  name: string
-  /**
-   * 库目录
-   * @default 'es'
-   */
-  directory?: string
-  /**
-   * 组件配置
-   */
-  component?:
-    | false
-    | {
-        /**
-         * 组件引入地址转换
-         * @param config 库组件配置
-         * @default ({name, directory, importComponentName}: IComponentConfig) => `${name}/${directory}/${importComponentName}`
-         */
-        transform: (config: Omit<IComponentConfig, 'component'>) => string
-      }
-  /**
-   * 样式配置
-   */
-  style?:
-    | false
-    | {
-        /**
-         * 样式引入地址转换
-         * @param config 库组件配置
-         * @default ({name, directory, importComponentName}: IComponentConfig) => `${name}/${directory}/${importComponentName}/style`
-         */
-        transform: (config: Omit<IComponentConfig, 'component'>) => string
-        /**
-         * 排除不存在文件
-         * @default true
-         */
-        excludeNotExistFile?: boolean
-      }
-}
-
-/**
  * 插件配置
  */
-export interface IPluginConfig {
-  // /**
-  //  * 默认设置
-  //  */
-  // defaultConfig: Omit<ILibConfig, 'name'>
+export interface IPluginConfig<CORE extends boolean = true> {
+  /**
+   * 默认设置
+   */
+  defaultConfig?: Omit<ILibConfig<false>, 'name'>
   /**
    * 库列表
    */
-  libList: Array<ILibConfig>
+  libList: CORE extends true ? Array<ILibConfig<CORE>> : Array<ILibConfig<CORE> | string>
 }

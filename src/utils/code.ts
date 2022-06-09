@@ -37,7 +37,6 @@ export const generateImportStyleCode = (libDict: ILibImportComponentDict) => {
       const path = config.style.transform(config)
       const importPath = `import '${path}';`
 
-      if (config.style.excludeNotExistFile === undefined) config.style.excludeNotExistFile = true
       if (!config.style.excludeNotExistFile) {
         importStyleCode += importPath
         continue

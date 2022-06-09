@@ -2,14 +2,17 @@ import { IPluginConfig } from './typings'
 import { Plugin, ResolvedConfig } from 'vite'
 import { codeHasLib, generateImportComponentCode, generateImportStyleCode } from './utils/code'
 import { getAst, parseImportLibComponent, removeImportLib } from './utils/ast'
+import { transformPluginConfig } from './utils/config'
 
 let isSourcemap = false
 
 /**
  * vite 按需引入插件
  */
-const vitePluginImportLyrical = (config: IPluginConfig): Plugin => {
+const vitePluginImportLyrical = (pluginConfig: IPluginConfig<false>): Plugin => {
   let viteConfig: ResolvedConfig
+
+  const config = transformPluginConfig(pluginConfig)
 
   return {
     name: 'vite-plugin-import-lyrical',
@@ -54,3 +57,7 @@ const vitePluginImportLyrical = (config: IPluginConfig): Plugin => {
 }
 
 export default vitePluginImportLyrical
+
+vitePluginImportLyrical({
+  libList: ['']
+})
