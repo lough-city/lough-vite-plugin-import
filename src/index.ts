@@ -57,7 +57,3 @@ const vitePluginImportLyrical = (pluginConfig: IPluginConfig<false>): Plugin => 
 }
 
 export default vitePluginImportLyrical
-
-vitePluginImportLyrical({
-  libList: ['']
-})

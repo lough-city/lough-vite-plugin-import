@@ -1,5 +1,6 @@
-import { RequiredPick } from '@lyrical/types'
+import { FuncMap, RequiredPick } from '@lyrical/types'
 import { NamedTypeFuncMapOrMap } from '@lyrical/js'
+import { PRESET_LIB_CONFIG } from 'src/constants'
 
 /**
  * 库处理组件配置
@@ -91,11 +92,16 @@ export interface ILibImportComponentDict {
  */
 export interface IPluginConfig<CORE extends boolean = true> {
   /**
-   * 默认设置
+   * 默认配置
    */
-  defaultConfig?: Omit<ILibConfig<false>, 'name'>
+  presetConfig?: Omit<ILibConfig<false>, 'name'>
   /**
    * 库列表
    */
-  libList: CORE extends true ? Array<ILibConfig<CORE>> : Array<ILibConfig<CORE> | string>
+  libList: CORE extends true
+    ? Array<ILibConfig<CORE>>
+    :
+        | Array<ILibConfig<CORE> | FuncMap<typeof PRESET_LIB_CONFIG, PRESET_LIB_CONFIG>>
+        | Array<ILibConfig<CORE> | keyof typeof PRESET_LIB_CONFIG>
+        | Array<ILibConfig<CORE> | string>
 }
