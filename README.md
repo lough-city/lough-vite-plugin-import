@@ -1,4 +1,4 @@
-# `@lough/vite-plugin-import`
+# @lough/vite-plugin-import
 
 > An on-demand import plug-in that is exclusive to Vite.
 

@@ -7,23 +7,30 @@
   "scripts": {
     "build": "tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AnCIity/vite-plugin-import-perfect.git"
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "keywords": [
     "vite"
   ],
   "author": "City",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/AnCIity/vite-plugin-import-perfect/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnCIity/lough-vite-plugin-import.git"
   },
-  "homepage": "https://github.com/AnCIity/vite-plugin-import-perfect#readme",
+  "bugs": {
+    "url": "https://github.com/AnCIity/lough-vite-plugin-import/issues"
+  },
+  "homepage": "https://github.com/AnCIity/lough-vite-plugin-import#readme",
   "dependencies": {
     "@babel/generator": "^7.17.10",
     "@babel/parser": "^7.17.10",
-    "@lyrical/js": "^0.3.19"
+    "@lyrical/js": "^0.3.20"
   },
   "devDependencies": {
     "@babel/types": "^7.17.10",
