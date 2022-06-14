@@ -168,7 +168,7 @@ export interface ILibComponentConfig {
   /**
    * 组件引入地址转换
    * @param config 库组件配置
-   * @default ({name, directory, importComponentName}: IComponentConfig) => `${name}/${directory}/${importComponentName}`
+   * @default ({name, directory, importComponentName}) => `${name}/${directory}/${importComponentName}`
    */
   transform: (config: Omit<IComponentConfig, 'component'>) => string
 }
@@ -181,7 +181,7 @@ export interface ILibStyleConfig {
   /**
    * 样式引入地址转换
    * @param config 库组件配置
-   * @default ({name, directory, importComponentName}: IComponentConfig) => `${name}/${directory}/${importComponentName}/style`
+   * @default ({name, directory, importComponentName}) => `${name}/${directory}/${importComponentName}/style`
    */
   transform: (config: Omit<IComponentConfig, 'style'>) => string
   /**

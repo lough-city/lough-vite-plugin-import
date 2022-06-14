@@ -1,4 +1,4 @@
-import { ILibImportComponentDict, IPluginConfig } from '../typings'
+import { ILibImportComponentDict } from '../typings'
 import { normalize, resolve } from 'path'
 import { existsSync } from 'fs'
 
@@ -43,9 +43,11 @@ export const generateImportStyleCode = (libDict: ILibImportComponentDict) => {
       }
 
       const modulePath = normalize(require.resolve(libName))
-      const lastIndex = modulePath.lastIndexOf(libName)
+      const lastIndex = modulePath.lastIndexOf(libName.includes('/') ? libName.replace(/\//g, '\\') : libName)
       const realPath = normalize(resolve(modulePath.substring(0, lastIndex), path))
-      const has = existsSync(realPath)
+      let has = existsSync(realPath)
+      if (!has && !path.includes('.'))
+        has = existsSync(normalize(resolve(modulePath.substring(0, lastIndex), path + '.js')))
 
       importStyleCode += has ? importPath : ''
     }

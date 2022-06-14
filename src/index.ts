@@ -9,13 +9,13 @@ let isSourcemap = false
 /**
  * vite 按需引入插件
  */
-const vitePluginImportLyrical = (pluginConfig: IPluginConfig<false>): Plugin => {
+const vitePluginImportLough = (pluginConfig: IPluginConfig<false>): Plugin => {
   let viteConfig: ResolvedConfig
 
   const config = transformPluginConfig(pluginConfig)
 
   return {
-    name: 'vite-plugin-import-lyrical',
+    name: 'lough-vite-plugin-import',
     configResolved(resolvedConfig) {
       viteConfig = resolvedConfig
       isSourcemap = !!viteConfig.build?.sourcemap
@@ -56,4 +56,4 @@ const vitePluginImportLyrical = (pluginConfig: IPluginConfig<false>): Plugin => 
   }
 }
 
-export default vitePluginImportLyrical
+export default vitePluginImportLough

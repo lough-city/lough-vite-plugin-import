@@ -1,5 +1,5 @@
 import { NAMED_TYPE } from '@lyrical/js'
-import { PRESET_LIB_CONFIG } from 'src/constants'
+import { PRESET_LIB_CONFIG } from '../constants/index'
 import { ILibConfig, IPluginConfig } from 'src/typings'
 
 const presetLibConfigMap: Record<string, ILibConfig<false>> = {
