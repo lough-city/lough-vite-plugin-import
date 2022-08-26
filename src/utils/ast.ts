@@ -2,7 +2,7 @@ import generate from '@babel/generator'
 import { parse, ParseResult } from '@babel/parser'
 import { File } from '@babel/types'
 import { transformNamedByNamedType } from '@lyrical/js'
-import { ILibConfig, ILibImportComponentDict } from 'src/typings'
+import { ILibConfig, ILibImportComponentDict } from '../typings'
 
 /**
  * 获取 babel 解析后的 AST

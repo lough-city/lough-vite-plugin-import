@@ -4,13 +4,13 @@
 
 ## Install
 
-```shell
+```bash
 npm i @lough/vite-plugin-import -D
 ```
 
 or
 
-```shell
+```bash
 yarn add @lough/vite-plugin-import -D
 ```
 

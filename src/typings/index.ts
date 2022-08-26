@@ -1,6 +1,6 @@
 import { FuncMap, RequiredPick } from '@lyrical/types'
 import { NamedTypeFuncMapOrMap } from '@lyrical/js'
-import { PRESET_LIB_CONFIG } from 'src/constants/index'
+import { PRESET_LIB_CONFIG } from '../constants/index'
 
 /**
  * 库处理组件配置
