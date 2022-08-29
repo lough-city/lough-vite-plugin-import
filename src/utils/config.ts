@@ -16,9 +16,9 @@ const presetLibConfigMap: Record<string, ILibConfig<false>> = {
 }
 
 export const transformPluginConfig = (pluginConfig: IPluginConfig<false>) => {
-  const { presetConfig, libList } = pluginConfig
+  const { presetConfig } = pluginConfig
 
-  libList.forEach(config => {
+  pluginConfig.libList = pluginConfig.libList.map(config => {
     if (typeof config === 'function')
       config = JSON.parse(JSON.stringify(presetLibConfigMap[config(PRESET_LIB_CONFIG)] || {})) as ILibConfig<false>
     if (typeof config === 'string')
@@ -47,6 +47,8 @@ export const transformPluginConfig = (pluginConfig: IPluginConfig<false>) => {
     if (config.style && config.style !== true && config.style.excludeNotExistFile === undefined) {
       config.style.excludeNotExistFile = true
     }
+
+    return config
   })
 
   return pluginConfig as unknown as IPluginConfig<true>
