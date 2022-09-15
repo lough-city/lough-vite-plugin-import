@@ -28,7 +28,7 @@ export const transformPluginConfig = (pluginConfig: IPluginConfig<false>) => {
 
     if (config.namedType === undefined) config.namedType = presetConfig?.namedType || NAMED_TYPE.BigHumpNamed
 
-    if (config.component === undefined || config.style === true) {
+    if (config.component === undefined || config.component === true) {
       config.component = presetConfig?.component || {
         transform: ({ name, directory, importComponentName }) => {
           return `${name}/${directory}/${importComponentName}`
