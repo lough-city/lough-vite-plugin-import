@@ -6,12 +6,12 @@ const presetLibConfigMap: Record<string, ILibConfig<false>> = {
   [PRESET_LIB_CONFIG.antd]: {
     name: PRESET_LIB_CONFIG.antd,
     directory: 'es',
-    namedType: map => map['dash-named']
+    namedType: NAMED_TYPE['dash-named']
   },
   [PRESET_LIB_CONFIG['@lyrical/react']]: {
     name: PRESET_LIB_CONFIG['@lyrical/react'],
     directory: 'es/components',
-    namedType: map => map.BigHumpNamed
+    namedType: NAMED_TYPE.BigHumpNamed
   }
 }
 
