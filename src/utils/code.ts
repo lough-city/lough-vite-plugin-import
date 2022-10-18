@@ -44,10 +44,12 @@ export const generateImportStyleCode = (libDict: ILibImportComponentDict) => {
 
       const modulePath = normalize(require.resolve(libName))
       const lastIndex = modulePath.lastIndexOf(libName.includes('/') ? libName.replace(/\//g, '\\') : libName)
-      const realPath = normalize(resolve(modulePath.substring(0, lastIndex), path))
+      const realPath = normalize(resolve(lastIndex === -1 ? 'node_modules' : modulePath.substring(0, lastIndex), path))
       let has = existsSync(realPath)
       if (!has && !path.includes('.'))
-        has = existsSync(normalize(resolve(modulePath.substring(0, lastIndex), path + '.js')))
+        has = existsSync(
+          normalize(resolve(lastIndex === -1 ? 'node_modules' : modulePath.substring(0, lastIndex), path + '.js'))
+        )
 
       importStyleCode += has ? importPath : ''
     }
