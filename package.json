@@ -22,12 +22,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AnCIity/lough-vite-plugin-import.git"
+    "url": "git+https://github.com/lough-city/lough-vite-plugin-import"
   },
   "bugs": {
-    "url": "https://github.com/AnCIity/lough-vite-plugin-import/issues"
+    "url": "https://github.com/lough-city/lough-vite-plugin-import/issues"
   },
-  "homepage": "https://github.com/AnCIity/lough-vite-plugin-import#readme",
+  "homepage": "https://github.com/lough-city/lough-vite-plugin-import#readme",
   "dependencies": {
     "@babel/generator": "^7.17.10",
     "@babel/parser": "^7.17.10",
