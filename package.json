@@ -1,6 +1,6 @@
 {
   "name": "@lough/vite-plugin-import",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An on-demand import plug-in that is exclusive to Vite.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
