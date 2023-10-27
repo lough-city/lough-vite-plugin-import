@@ -1,7 +1,7 @@
 import generate from '@babel/generator'
 import { parse, ParseResult } from '@babel/parser'
 import { File } from '@babel/types'
-import { transformNamedByNamedType } from '@lyrical/js'
+import { transformNamedByNamedType } from '@logically/prototype-string'
 import { ILibConfig, ILibImportComponentDict } from '../typings'
 
 /**

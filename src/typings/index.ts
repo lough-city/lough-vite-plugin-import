@@ -1,5 +1,5 @@
-import { FuncMap, RequiredPick } from '@lyrical/types'
-import { NamedTypeFuncMapOrMap } from '@lyrical/js'
+import { FuncMap, RequiredPick } from '@logically/types'
+import { NamedTypeFuncMapOrMap } from '@logically/prototype-string'
 import { PRESET_LIB_CONFIG } from '../constants/index'
 
 /**

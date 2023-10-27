@@ -1,4 +1,4 @@
-import { NAMED_TYPE } from '@lyrical/js'
+import { NAMED_TYPE } from '@logically/prototype-string'
 import { PRESET_LIB_CONFIG } from '../constants/index'
 import { ILibConfig, IPluginConfig } from '../typings'
 

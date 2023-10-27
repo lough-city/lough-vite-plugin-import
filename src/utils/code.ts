@@ -1,6 +1,7 @@
 import { ILibImportComponentDict } from '../typings'
 import { normalize, resolve } from 'path'
 import { existsSync } from 'fs'
+import { platform } from 'os'
 
 /**
  * 生成引入组件代码
@@ -43,7 +44,9 @@ export const generateImportStyleCode = (libDict: ILibImportComponentDict) => {
       }
 
       const modulePath = normalize(require.resolve(libName))
-      const lastIndex = modulePath.lastIndexOf(libName.includes('/') ? libName.replace(/\//g, '\\') : libName)
+      const lastIndex = modulePath.lastIndexOf(
+        libName.includes('/') && platform() === 'win32' ? libName.replace(/\//g, '\\') : libName
+      )
       const realPath = normalize(resolve(lastIndex === -1 ? 'node_modules' : modulePath.substring(0, lastIndex), path))
       let has = existsSync(realPath)
       if (!has && !path.includes('.'))
